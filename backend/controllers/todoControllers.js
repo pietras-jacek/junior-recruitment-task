@@ -29,8 +29,7 @@ module.exports = {
     // Insert
     insert: (req, res) => {
         var todoContent = req.body.content;
-        console.log("todoContent");
-        todoContent.save({ content: todoContent }, (err, item) => {
+        TodoModel.create({ content: todoContent }, (err, item) => {
             if(err) { return console.log(err); }
             res.status(200).json(item);
         });
