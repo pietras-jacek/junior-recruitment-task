@@ -27,7 +27,7 @@ module.exports = {
     },
 
     // Insert
-    insert: (req, res) => {
+    insert: (req, res) => { console.log(req.body);
         var todoContent = req.body.content;
         TodoModel.create({ content: todoContent }, (err, item) => {
             if(err) { return console.log(err); }
@@ -37,14 +37,14 @@ module.exports = {
 
     // Update by id
     update: (req, res) => {
-        TodoModel.findOneAndUpdate({ _id: req.params.id }, { content: req.body.content }, (err) => {
+        TodoModel.findOneAndUpdate({ _id: req.params.id }, { content: req.body }, (err) => {
             if(err) { return console.log(err); }
             res.sendStatus(200);
         });
     },
     // Delete by id
     delete: (req, res) => {
-        TodoModel.findOneAndRemove({ _id: req.params.id }, { content: req.body.content }, (err) => {
+        TodoModel.findOneAndRemove({ _id: req.params.id }, { content: req.body }, (err) => {
             if(err) { return console.error(err); }
             res.sendStatus(200);
         });

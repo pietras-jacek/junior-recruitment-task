@@ -6,6 +6,7 @@ $(document).ready(() => {
 
     // Populate the todo table on initial page load
     populateTable();
+    $('#btnAddTask').on('click', addTodoTask);
 });
 
 // Functions ===============
@@ -19,14 +20,15 @@ function populateTable() {
     // jQuery AJAX call for JSON
     $.getJSON('/todos/all', (data) => {
         // For each item in our JSON add a table row and cells to the content strings
-        $.each(data, () => {
+        $.each(data, (index) => {
             tableContent += '<tr>';
             tableContent += '<td><input type="checkbox"></td>';
-            tableContent += '<td><span id="todoContent">'+this.content+'</span></td>';
+            tableContent += '<td><span id="todoContent">'+data[index].content+'</span></td>';
+            tableContent += '</tr>';
         });
 
         // Injest the whole content string into our existing HTML table
-        $('#todoList table tbody').html(tableContent);
+        $('#todoTasks').html(tableContent);
     });
 }
 
@@ -36,33 +38,30 @@ function addTodoTask(event) {
 
     // Basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
-    $('#addTodoTask').each((index, val) => {
-        if($(this).val() === '') { errorCount++; }
+    $('#addTask input').each((index, val) => {
+        if($('#addTask input').val() === '') { errorCount++; }
     });
-
     // Check and make sure errorCount's still at zero
     if(errorCount === 0) {
         // If it is, compile all todo task into one object
-         newTodoTask = {
+        var newTodoTask = {
             'content': $('#addTodoTask').val()
         }
+        console.log(newTodoTask.content);
         // Use AJAX to post the object to our addTask service
         $.ajax({
             type: 'POST',
             data: newTodoTask,
-            url: '/todos/insert',
+            url: '/todos/create',
             dataType: 'JSON'
         }).done((response) => {
             // Check for successful (black) response
-            if (response.msg === '') {
+            if (response) {
                 // Clear the form inputs
-                $('input#addTodoTask').val('');
+                $('#addTodoTask').val('');
 
                 //Update the table
                 populateTable();
-            } else {
-                // If something goes wrong, alert the error message that our service returned
-                alert('Błąd: '+ response.msg);
             }
         });
     } else {
@@ -71,4 +70,3 @@ function addTodoTask(event) {
         return false;
     }
 };
-$('#btnAddTask').on('click', addTodoTask);
