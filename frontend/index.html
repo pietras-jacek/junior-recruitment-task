@@ -5,9 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <script src="/jquery/jquery.js"></script>
+    <script src="ajaxScript.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <h1>Witaj</h1>
+    <h1>Dodaj liste rzeczy do zrobienia</h1>
+    <table id="todoList">
+        <thead>
+            <tr>
+                <th>Wykonano</th>
+                <th><p>ToDo List</p></th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <span id="todoContent"></span>
+                </td>
+            </tr>
+        </thead>
+    </table>
+
+    <br><br><br><br>
+    <table>
+        <thead>
+            <p>ToDo List (dodawanie)</p>
+            <tr>
+                <td>
+                    <form id="addTask">
+                        Zadanie: <input type="text" id="addTodoTask" placeholder="Wprowadź zadanie">
+                        <button id="btnAddTask">Dodaj zadanie</button>
+                    </form>
+                </td>
+            </tr>
+        </thead>
+    </table>
 </body>
 </html>
