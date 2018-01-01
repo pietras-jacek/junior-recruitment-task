@@ -1,5 +1,6 @@
 // Todolist data array for filling in info box
 var todoListData = [];
+// It stores the identifier of the currently edited record
 var actualID = '';
 // DOM Ready ==========================
 $(document).ready(() => {
@@ -22,17 +23,17 @@ function populateTable() {
         $.each(data, (index) => {
             if(data[index].completed) {
                 tableContent += '<tr>';
-                tableContent += '<td><input type="checkbox" class="completedTask" checked="true" disabled="disabled" id="'+data[index]._id+'" onclick="completeTodoTask(event)"></td>';
+                tableContent += '<td class="leftSide"><input type="checkbox" class="completedTask" checked="true" disabled="disabled" id="'+data[index]._id+'" onclick="completeTodoTask(event)"></td>';
                 tableContent += '<td><span id="todoContent" class="completedTask">'+data[index].content+'</span>'+
-                '<button class="btnEditTask completedTask" id="'+data[index]._id+'" disabled>Edytuj zadanie</button>'+
-                '<img src="/images/trash.png" alt="Usuń zadanie" class="doneImage" id="'+data[index]._id+'" onclick=deleteTodoTask(event)></img></td>';
+                '<img src="/images/pencil.png" alt="Edit" class="btnEditTask doneImage" id="'+data[index]._id+'"></img>'+
+                '<div class="rightImage"><img src="/images/trash.png" alt="Usuń zadanie" class="doneImage" id="'+data[index]._id+'" onclick=deleteTodoTask(event)></img></div></td>';
                 tableContent += '</tr>';
             } else {
                 tableContent += '<tr>';
-                tableContent += '<td><input type="checkbox" class="activeTask" id="'+data[index]._id+'" onclick="completeTodoTask(event)"></td>';
+                tableContent += '<td class="leftSide"><input type="checkbox" class="activeTask" id="'+data[index]._id+'" onclick="completeTodoTask(event)"></td>';
                 tableContent += '<td><span id="todoContent" class="activeTask">'+data[index].content+'</span>'+
-                '<button class="btnEditTask activeTask" id="'+data[index]._id+'" onclick="enableEditTodoTask(event)">Edytuj zadanie</button>'+
-                '<img src="/images/trash.png" alt="Usuń zadanie" id="'+data[index]._id+'" onclick=deleteTodoTask(event)></img></td>';
+                '<img src="/images/pencil.png" alt="Edit" class="btnEditTask activeTask" id="'+data[index]._id+'" onclick="enableEditTodoTask(event)"></img>'+
+                '<img src="/images/trash.png" alt="Usuń zadanie" class="rightImage" id="'+data[index]._id+'" onclick=deleteTodoTask(event)></img></td>';
                 tableContent += '</tr>';
             }
         });

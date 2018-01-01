@@ -1,11 +1,19 @@
 body {
   font-family: 'Lato', sans-serif;
-  color: #333; }
+  background-color: #f9f9f9; }
 
 table {
   font-family: 'Lato', sans-serif;
   border-collapse: collapse;
-  width: 100%; }
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto; }
+
+#todoList {
+  margin-top: 10%; }
+
+#addTask {
+  text-align: center; }
 
 td, th {
   border: 2px solid #000000;
@@ -43,7 +51,7 @@ tr:nth-child(even) {
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -81,17 +89,18 @@ tr:nth-child(even) {
   cursor: pointer; }
 
 .modal-header {
-  padding: 2px 16px;
-  background-color: #5cb85c;
+  padding: 2px 5px;
+  background-color: #2e3641;
   color: white; }
 
 .modal-body {
-  padding: 2px 16px;
-  height: 0%; }
+  padding: 32px 32px;
+  height: 0%;
+  background-color: #f2f2f2; }
 
 .modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
+  padding: 2px 5px;
+  background-color: #2e3641;
   color: white; }
 
 .activeTask {
@@ -104,3 +113,19 @@ tr:nth-child(even) {
 
 .doneImage {
   filter: opacity(20%); }
+
+#tableHeader {
+  color: #9eb2c0;
+  background-color: #2e3641;
+  width: 20%; }
+
+.rightImage {
+  float: right;
+  margin-right: 10px; }
+
+.btnEditTask {
+  float: right; }
+
+.leftSide {
+  width: 3%;
+  text-align: center; }
