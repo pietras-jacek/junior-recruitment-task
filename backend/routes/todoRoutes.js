@@ -10,6 +10,7 @@ module.exports = (app) => {
     todoRouter.get('/count', todo.count);
     todoRouter.post('/create', todo.insert);
     todoRouter.put('/edit/:id', todo.update);
+    todoRouter.put('/complete/:id', todo.completeTask);
     todoRouter.delete('/delete/:id', todo.delete);
     
     app.use('/todos', todoRouter);

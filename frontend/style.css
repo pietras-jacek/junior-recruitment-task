@@ -87,9 +87,20 @@ tr:nth-child(even) {
 
 .modal-body {
   padding: 2px 16px;
-  height: 100%; }
+  height: 0%; }
 
 .modal-footer {
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white; }
+
+.activeTask {
+  color: #2e3641; }
+
+.completedTask {
+  color: #9eb2c0;
+  text-decoration: line-through;
+  font-size: 15px; }
+
+.doneImage {
+  filter: opacity(20%); }

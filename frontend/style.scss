@@ -94,3 +94,17 @@ tr:nth-child(even) {
   background-color: #5cb85c;
   color: white;
 }
+
+.activeTask {
+  color: #2e3641;
+}
+
+.completedTask {
+  color: #9eb2c0;
+  text-decoration: line-through;
+  font-size: 15px;
+}
+
+.doneImage {
+  filter: opacity(20%);
+}

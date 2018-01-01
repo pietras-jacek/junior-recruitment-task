@@ -27,20 +27,31 @@ module.exports = {
     },
 
     // Insert
-    insert: (req, res) => { console.log(req.body);
-        var todoContent = req.body.content;
-        TodoModel.create({ content: todoContent }, (err, item) => {
-            if(err) { return console.log(err); }
-            res.status(200).json(item);
-        });
+    insert: (req, res) => {
+        if(req.body.content == '') {
+            res.sendStatus(400);
+            console.error("Błąd - Serwer odrzucił próbę dodania pustego rekordu");
+        } else {
+            var todoContent = req.body.content;
+            TodoModel.create({ content: todoContent }, (err, item) => {
+                if(err) { return console.log(err); }
+                res.status(200).json(item);
+                
+            });
+        }
     },
 
     // Update by id
     update: (req, res) => {
-        TodoModel.findOneAndUpdate({ _id: req.params.id }, { content: req.body.content }, (err) => {
-            if(err) { return console.log(err); }
-            res.sendStatus(200);
-        });
+        if(req.body.content == '') {
+            res.sendStatus(400);
+            console.error("Błąd - Serwer odrzucił próbę edycji rekordu na pusty");
+        } else {
+            TodoModel.findOneAndUpdate({ _id: req.params.id }, { content: req.body.content }, (err) => {
+                if(err) { return console.log(err); }
+                res.sendStatus(200);
+            });
+        }
     },
 
     // Delete by id
@@ -49,5 +60,14 @@ module.exports = {
             if(err) { return console.error(err); }
             res.sendStatus(200);
         });
+    },
+
+    completeTask: (req, res) => {
+        TodoModel.findOneAndUpdate({ _id: req.params.id }, { completed: req.body.completed }, (err) => {
+            if(err) { 
+                return console.log(err); 
+            }
+            res.sendStatus(200);
+            });
+        }
     }
-}

@@ -20,12 +20,21 @@ function populateTable() {
     $.getJSON('/todos/all', (data) => {
         // For each item in our JSON add a table row and cells to the content strings
         $.each(data, (index) => {
-            tableContent += '<tr>';
-            tableContent += '<td><input type="checkbox"></td>';
-            tableContent += '<td><span id="todoContent">'+data[index].content+'</span>'+
-            '<button class="btnEditTask" id="'+data[index]._id+'" onclick="enableEditTodoTask(event)">Edytuj zadanie</button>'+
-            '<img src="/images/trash.png" alt="Usuń zadanie" id="'+data[index]._id+'" onclick=deleteTodoTask(event)></img></td>';
-            tableContent += '</tr>';
+            if(data[index].completed) {
+                tableContent += '<tr>';
+                tableContent += '<td><input type="checkbox" class="completedTask" checked="true" disabled="disabled" id="'+data[index]._id+'" onclick="completeTodoTask(event)"></td>';
+                tableContent += '<td><span id="todoContent" class="completedTask">'+data[index].content+'</span>'+
+                '<button class="btnEditTask completedTask" id="'+data[index]._id+'" disabled>Edytuj zadanie</button>'+
+                '<img src="/images/trash.png" alt="Usuń zadanie" class="doneImage" id="'+data[index]._id+'" onclick=deleteTodoTask(event)></img></td>';
+                tableContent += '</tr>';
+            } else {
+                tableContent += '<tr>';
+                tableContent += '<td><input type="checkbox" class="activeTask" id="'+data[index]._id+'" onclick="completeTodoTask(event)"></td>';
+                tableContent += '<td><span id="todoContent" class="activeTask">'+data[index].content+'</span>'+
+                '<button class="btnEditTask activeTask" id="'+data[index]._id+'" onclick="enableEditTodoTask(event)">Edytuj zadanie</button>'+
+                '<img src="/images/trash.png" alt="Usuń zadanie" id="'+data[index]._id+'" onclick=deleteTodoTask(event)></img></td>';
+                tableContent += '</tr>';
+            }
         });
         // Injest the whole content string into our existing HTML table
         $('#todoTasks').html(tableContent);
@@ -121,6 +130,18 @@ function deleteTodoTask(event) {
     }
 };
 
+function completeTodoTask(event) {
+
+    $.ajax({
+        type: 'PUT',
+        data: {completed: true},
+        url: '/todos/complete/'+ event.target.id,
+        dataType: 'JSON',
+    });
+    populateTable();
+
+}
+
  function getModalWindow(event) {
          // Get the modal
          var modal = document.getElementById('myModal');
@@ -139,3 +160,4 @@ function deleteTodoTask(event) {
              }
          });
  }
+
