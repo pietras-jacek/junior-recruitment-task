@@ -7,9 +7,10 @@ const app = express();
 
 app.set('port', (process.env.PORT || 8000));
 
-app.use('/', express.static(path.join(__dirname,  '/frontend')));
-app.use('/scripts', express.static(path.join(__dirname, '/backend')));
+app.use('/', express.static(path.join(__dirname,  '/frontend/')));
+app.use('/scripts', express.static(path.join(__dirname, '/backend/')));
 app.use('/jquery', express.static(path.join(__dirname, './node_modules/jquery/dist/')));
+app.use('/images/', express.static(path.join(__dirname, '/assets/')));
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST

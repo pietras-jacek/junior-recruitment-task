@@ -20,7 +20,7 @@ module.exports = {
 
     // Get by id
     get: (req, res) => {
-        TodoModel.findOne({ id: req.params.id }, (err, obj) => {
+        TodoModel.findOne({ _id: req.params.id }, (err, obj) => {
             if(err) { return console.error(err); }
             res.json(obj);
         });
@@ -37,11 +37,12 @@ module.exports = {
 
     // Update by id
     update: (req, res) => {
-        TodoModel.findOneAndUpdate({ _id: req.params.id }, { content: req.body }, (err) => {
+        TodoModel.findOneAndUpdate({ _id: req.params.id }, { content: req.body.content }, (err) => {
             if(err) { return console.log(err); }
             res.sendStatus(200);
         });
     },
+
     // Delete by id
     delete: (req, res) => {
         TodoModel.findOneAndRemove({ _id: req.params.id }, { content: req.body }, (err) => {

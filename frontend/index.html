@@ -20,15 +20,28 @@
             </tr>
         </thead>
         <tbody id="todoTasks"></tbody>
-            <!-- <tr>
-                <td>
-                    <input type="checkbox">
-                </td>
-                <td>
-                    <span id="todoContent"></span>
-                </td>
-            </tr> -->
     </table>
+
+    <!-- Modal window -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Edytuj zadanie</h2>
+            </div>
+            <div class="modal-body">
+                <span class="close"></span>
+                <form id="editTask">
+                    Zadanie: <input type="text" id="editTodoTask" placeholder="Wprowadź zadanie">
+                    <button id="btnEditTask" onclick="todoTaskEdit(event, actualID)">Edytuj zadanie</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <h3>Program stworzony przez Jacka Pietrasa</h3>
+            </div>
+        </div>
+    </div>
 
     <br><br><br><br>
     <table>
