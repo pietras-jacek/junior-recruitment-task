@@ -11,8 +11,6 @@ Inna technologia wykorzystana w projekcie:
 * [Node-sass](https://github.com/sass/node-sass): Node-sass to biblioteka zapewniająca powiązanie dla Node.js z LibSass, wersją C popularnego preprocesora arkusza stylów, Sass.
 Pozwala na natywne kompilowanie plików .scss do css z niewiarygodną prędkością i automatycznie poprzez oprogramowanie pośredniczące.
 * [Nodemon](https://nodemon.io/): Nodemon to narzędzie, które monitoruje wszelkie zmiany w kodzie frontendowym i backendowych i automatycznie restartuje serwer w przypadku wykrycia zmian.
-* [Angular 2 JWT](https://github.com/auth0/angular2-jwt): Wsparcie technologii JWT dla Angulara 4 
-* [Bcrypt.js](https://github.com/dcodeIO/bcrypt.js): Szyfrowanie haseł
 
 ## Wymagania wstępne
 1. Zainstaluj [Node.js](https://nodejs.org) oraz serwer bazy danych [MongoDB](https://www.mongodb.com)
